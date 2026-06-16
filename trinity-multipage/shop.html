@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Trinity Interior Design</title>
+  <meta name="description" content="The Trinity Edit — a curated collection of objects, textiles, and furnishings. Launching soon." />
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <style>
+    /* Coming-soon hero treatment */
+    .shop-hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+    .shop-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.3) saturate(.7); }
+    .shop-hero-overlay { position: absolute; inset: 0; background: rgba(10,9,7,.55); }
+    .shop-hero-content { position: relative; z-index: 2; padding: var(--space-24) var(--gutter); max-width: 680px; }
+    .shop-hero-eyebrow {
+      font-family: var(--font-body); font-size: var(--text-xs); font-weight: 300;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--bronze-light);
+      margin-bottom: var(--space-6); display: flex; align-items: center; justify-content: center; gap: var(--space-3);
+      opacity: 0; transform: translateY(16px);
+      animation: fadeUp var(--dur-slow) var(--ease-luxury) .2s forwards;
+    }
+    .shop-hero-eyebrow::before, .shop-hero-eyebrow::after { content: '—'; color: var(--bronze); }
+    .shop-hero h1 {
+      font-family: var(--font-display); font-size: clamp(3rem,6vw,7rem); font-weight: 300;
+      line-height: .95; color: var(--ivory); margin-bottom: var(--space-6);
+      opacity: 0; transform: translateY(24px);
+      animation: fadeUp var(--dur-slow) var(--ease-luxury) .4s forwards;
+    }
+    .shop-hero h1 em { font-style: italic; color: var(--bronze-light); }
+    .shop-hero p {
+      font-size: var(--text-base); font-weight: 300; color: var(--ivory-dim); line-height: 1.8;
+      opacity: 0; animation: fadeUp var(--dur-slow) var(--ease-luxury) .6s forwards;
+    }
+
+    /* Waitlist form */
+    .waitlist-form {
+      display: flex; gap: 0; margin-top: var(--space-10); max-width: 440px; margin-left: auto; margin-right: auto;
+      opacity: 0; animation: fadeUp var(--dur-slow) var(--ease-luxury) .8s forwards;
+    }
+    .waitlist-input {
+      flex: 1; background: transparent; border: 1px solid var(--border); border-right: none;
+      padding: 14px 20px; color: var(--ivory); font-family: var(--font-body); font-size: var(--text-sm);
+      font-weight: 300; outline: none; transition: border-color var(--dur-fast);
+    }
+    .waitlist-input::placeholder { color: var(--ivory-faint); }
+    .waitlist-input:focus { border-color: var(--bronze); }
+    .waitlist-submit {
+      background: var(--bronze); color: var(--black); border: 1px solid var(--bronze);
+      padding: 14px 24px; font-family: var(--font-body); font-size: var(--text-xs);
+      font-weight: 400; letter-spacing: .14em; text-transform: uppercase; cursor: pointer;
+      white-space: nowrap; transition: background var(--dur-fast), color var(--dur-fast);
+    }
+    .waitlist-submit:hover { background: var(--bronze-light); border-color: var(--bronze-light); }
+
+    /* Preview categories */
+    .categories-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-3); margin-top: var(--space-12); }
+    .category-card {
+      position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer;
+      background: var(--charcoal);
+    }
+    .category-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.6) saturate(.8); transition: transform .8s var(--ease-luxury), filter .8s var(--ease-luxury); }
+    .category-card:hover img { transform: scale(1.06); filter: brightness(.5) saturate(.7); }
+    .category-card-info {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      padding: var(--space-6); text-align: center;
+    }
+    .category-name { font-family: var(--font-display); font-size: clamp(1.2rem,2vw,1.8rem); font-weight: 400; color: var(--ivory); margin-bottom: var(--space-2); }
+    .category-count { font-size: var(--text-xs); font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: var(--ivory-faint); }
+    .category-badge {
+      position: absolute; top: var(--space-4); right: var(--space-4);
+      font-size: var(--text-xs); font-weight: 300; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--bronze-light); border: 1px solid var(--bronze); padding: var(--space-1) var(--space-3);
+      background: rgba(10,9,7,.7);
+    }
+
+    /* Editorial about section */
+    .shop-editorial { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,5vw,6rem); align-items: center; }
+
+    @media (max-width: 1024px) {
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .shop-editorial { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .waitlist-form { flex-direction: column; }
+      .waitlist-input { border-right: 1px solid var(--border); border-bottom: none; }
+      .waitlist-input:focus { border-color: var(--bronze); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" aria-label="Trinity Interior Design — Home">
+        <svg class="logo-icon" viewBox="0 0 56 44" fill="none" aria-hidden="true"><g stroke="#b08a5e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2L2 18v24M14 2l12 16v24"/><path d="M36 11L22 26v16M36 11l14 15v16"/></g></svg>
+        <div class="logo-text"><span class="logo-name">trinity</span><span class="logo-tagline">Interior Design</span></div>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="shop.html" aria-current="page">Shop</a></li>
+      </ul>
+      <a href="consultation.html" class="btn-nav">Book a Consultation</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <a href="studio.html">Studio</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="shop.html">Shop</a>
+    <a href="consultation.html" class="btn-nav">Book a Consultation</a>
+  </div>
+</header>
+
+<!-- Shop Hero -->
+<section class="shop-hero" style="padding-top:var(--nav-height)" aria-label="Shop — The Trinity Edit">
+  <img class="shop-hero-bg" src="assets/images/img-staging.png" alt="" aria-hidden="true" loading="eager" />
+  <div class="shop-hero-overlay" aria-hidden="true"></div>
+  <div class="shop-hero-content">
+    <p class="shop-hero-eyebrow">Coming Soon</p>
+    <h1>The Trinity <em>Edit</em></h1>
+    <p>A carefully considered collection of objects, textiles, and furnishings — each one selected because it is worth living with.</p>
+    <form class="waitlist-form" aria-label="Join the waitlist" onsubmit="handleWaitlist(event)">
+      <input class="waitlist-input" type="email" placeholder="Your email address" required aria-label="Email address" />
+      <button type="submit" class="waitlist-submit">Join Waitlist</button>
+    </form>
+    <p id="waitlist-thanks" style="display:none;margin-top:1.5rem;font-family:var(--font-display);font-style:italic;color:var(--bronze-light)">You're on the list. We'll be in touch.</p>
+  </div>
+</section>
+
+<!-- Category previews -->
+<section class="section" style="background:var(--black)">
+  <div class="section-inner">
+    <p class="section-label reveal">Explore the Edit</p>
+    <h2 class="section-heading reveal reveal-delay-1">What's <em>Coming</em></h2>
+    <div class="categories-grid">
+      <div class="category-card reveal">
+        <img src="assets/images/hero.png" alt="Lighting objects" loading="lazy" decoding="async"/>
+        <div class="category-badge">Coming Soon</div>
+        <div class="category-card-info">
+          <span class="category-name">Lighting</span>
+          <span class="category-count">Sculptural &amp; architectural</span>
+        </div>
+      </div>
+      <div class="category-card reveal reveal-delay-1">
+        <img src="assets/images/hero.png" alt="Textiles and cushions" loading="lazy" decoding="async"/>
+        <div class="category-badge">Coming Soon</div>
+        <div class="category-card-info">
+          <span class="category-name">Textiles</span>
+          <span class="category-count">Linen, bouclé &amp; wool</span>
+        </div>
+      </div>
+      <div class="category-card reveal reveal-delay-2">
+        <img src="assets/images/hero.png" alt="Decorative objects" loading="lazy" decoding="async"/>
+        <div class="category-badge">Coming Soon</div>
+        <div class="category-card-info">
+          <span class="category-name">Objects</span>
+          <span class="category-count">Bronze, ceramic &amp; stone</span>
+        </div>
+      </div>
+      <div class="category-card reveal reveal-delay-3">
+        <img src="assets/images/hero.png" alt="Furniture pieces" loading="lazy" decoding="async"/>
+        <div class="category-badge">Coming Soon</div>
+        <div class="category-card-info">
+          <span class="category-name">Furniture</span>
+          <span class="category-count">Limited &amp; bespoke pieces</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Editorial about the edit -->
+<section class="section" style="background:var(--charcoal)">
+  <div class="section-inner">
+    <div class="shop-editorial">
+      <div>
+        <p class="section-label reveal">About the Edit</p>
+        <h2 class="section-heading reveal reveal-delay-1">Objects Worth <em>Living With</em></h2>
+        <p class="section-body reveal reveal-delay-2">The Trinity Edit is not a collection of things. It is a collection of decisions — pieces that have earned a place in the room through beauty, craft, or both.</p>
+        <p class="section-body reveal reveal-delay-3" style="margin-top:1.5rem">Every object we carry comes from makers we trust: small workshops, independent artisans, and heritage producers who still make things by hand. We take no shortcuts with quality, and we take none here.</p>
+        <a href="consultation.html" class="btn-outline reveal reveal-delay-4" style="margin-top:2.5rem">
+          Work With Our Studio
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
+        </a>
+      </div>
+      <div style="position:relative;overflow:hidden;aspect-ratio:4/5" class="reveal reveal-delay-2">
+        <img src="assets/images/hero.png" alt="A curated collection of objects on a stone surface" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><a href="index.html" class="logo" style="margin-bottom:var(--space-4)"><svg width="38" height="30" viewBox="0 0 56 44" fill="none" aria-hidden="true"><g stroke="#b08a5e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2L2 18v24M14 2l12 16v24"/><path d="M36 11L22 26v16M36 11l14 15v16"/></g></svg><div class="logo-text"><span class="logo-name">trinity</span><span class="logo-tagline">Interior Design</span></div></a><p class="footer-tagline">California's premier interior design studio. Editorial, intentional, enduring.</p></div>
+    <div><p class="footer-col-title">Navigate</p><ul class="footer-links" role="list"><li><a href="studio.html">Studio</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="shop.html">Shop</a></li></ul></div>
+    <div><p class="footer-col-title">Services</p><ul class="footer-links" role="list"><li><a href="services.html">Full Design</a></li><li><a href="services.html">Consultation</a></li><li><a href="services.html">Renovation</a></li><li><a href="consultation.html">Book a Session</a></li></ul></div>
+    <div><p class="footer-col-title">Connect</p><ul class="footer-links" role="list"><li><a href="consultation.html">Contact Us</a></li><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li><li><a href="#">Houzz</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">© 2026 Trinity Interior Design. All rights reserved.</p><div class="footer-socials"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Houzz</a></div></div>
+</footer>
+<script src="assets/js/transitions.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script>
+  function handleWaitlist(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('waitlist-thanks').style.display = 'block';
+  }
+</script>
+</body>
+</html>
