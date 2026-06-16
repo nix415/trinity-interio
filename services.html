@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Trinity Interior Design</title>
+  <meta name="description" content="Full design, bespoke consultation, and renovation direction — Trinity's service offerings for discerning residential clients." />
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <style>
+    .services-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,8rem); align-items: center; }
+    .services-list  { display: flex; flex-direction: column; gap: 0; margin-top: var(--space-12); }
+    .service-row    {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: var(--space-8);
+      align-items: start;
+      padding: clamp(2.5rem,4vw,4rem) 0;
+      border-bottom: 1px solid var(--border-faint);
+      cursor: pointer;
+      transition: background var(--dur-fast) var(--ease-luxury);
+    }
+    .service-row:first-child { border-top: 1px solid var(--border-faint); }
+    .service-row:hover { background: rgba(176,138,94,.03); }
+    .service-row-num { font-family: var(--font-display); font-size: clamp(2rem,3vw,3.5rem); font-weight: 300; color: rgba(176,138,94,.2); line-height: 1; }
+    .service-row-body h2 { font-family: var(--font-display); font-size: clamp(1.5rem,2.5vw,2.8rem); font-weight: 400; color: var(--ivory); margin-bottom: var(--space-4); line-height: 1.1; }
+    .service-row-body p  { font-size: var(--text-sm); font-weight: 300; color: var(--ivory-faint); line-height: 1.8; max-width: 52ch; }
+    .service-row-includes { margin-top: var(--space-5); }
+    .service-row-includes li { font-size: var(--text-xs); font-weight: 300; letter-spacing: .08em; color: var(--ivory-dim); padding: var(--space-2) 0; border-bottom: 1px solid var(--border-faint); list-style: none; display: flex; align-items: center; gap: var(--space-3); }
+    .service-row-includes li::before { content: '—'; color: var(--bronze); flex-shrink: 0; }
+    .service-row-cta { align-self: center; flex-shrink: 0; }
+    .process-mini { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border-faint); margin-top: var(--space-12); }
+    .process-mini-item { background: var(--charcoal); padding: clamp(1.5rem,3vw,2.5rem); }
+    .process-mini-num { font-family: var(--font-display); font-size: clamp(1.5rem,2.5vw,3rem); font-weight: 300; color: rgba(176,138,94,.2); line-height: 1; margin-bottom: var(--space-4); }
+    .process-mini-title { font-family: var(--font-display); font-size: clamp(1rem,1.5vw,1.4rem); font-weight: 400; color: var(--ivory); margin-bottom: var(--space-3); }
+    .process-mini-body  { font-size: var(--text-sm); font-weight: 300; color: var(--ivory-faint); line-height: 1.75; }
+    @media (max-width: 1024px) {
+      .services-intro { grid-template-columns: 1fr; }
+      .service-row { grid-template-columns: 80px 1fr; }
+      .service-row-cta { grid-column: 2; margin-top: var(--space-5); }
+      .process-mini { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .service-row { grid-template-columns: 1fr; gap: var(--space-4); }
+      .service-row-num { font-size: 2rem; }
+      .process-mini { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav solid" id="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" aria-label="Trinity Interior Design — Home">
+        <svg class="logo-icon" viewBox="0 0 56 44" fill="none" aria-hidden="true"><g stroke="#b08a5e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2L2 18v24M14 2l12 16v24"/><path d="M36 11L22 26v16M36 11l14 15v16"/></g></svg>
+        <div class="logo-text"><span class="logo-name">trinity</span><span class="logo-tagline">Interior Design</span></div>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html" aria-current="page">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="shop.html">Shop</a></li>
+      </ul>
+      <a href="consultation.html" class="btn-nav">Book a Consultation</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <a href="studio.html">Studio</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="shop.html">Shop</a>
+    <a href="consultation.html" class="btn-nav">Book a Consultation</a>
+  </div>
+</header>
+
+<section class="page-hero" aria-label="Services">
+  <img class="page-hero-bg" src="assets/images/img-kitchen.png" alt="" aria-hidden="true" loading="eager" />
+  <div class="page-hero-overlay" aria-hidden="true"></div>
+  <div class="page-hero-content">
+    <p class="page-hero-eyebrow">What We Offer</p>
+    <h1>Our <em>Services</em></h1>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="section" style="background:var(--black)">
+  <div class="section-inner">
+    <div class="services-intro">
+      <div>
+        <p class="section-label reveal">Approach</p>
+        <h2 class="section-heading reveal reveal-delay-1">Tailored to Your <em>Vision</em></h2>
+        <p class="section-body reveal reveal-delay-2">Every client and every space is different. Our service offerings are structured to meet you where you are — whether you need a partner from the very beginning or expert guidance at a specific stage of your project.</p>
+        <p class="section-body reveal reveal-delay-3" style="margin-top:1.5rem">All services are available in Los Angeles and throughout California. International projects considered by inquiry.</p>
+      </div>
+      <div style="position:relative;overflow:hidden;aspect-ratio:4/5" class="reveal reveal-delay-2">
+        <img src="assets/images/hero.png" alt="Trinity design process in action" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service list -->
+<section class="section" style="background:var(--charcoal)">
+  <div class="section-inner">
+    <p class="section-label reveal">Our Offerings</p>
+    <div class="services-list">
+      <div class="service-row reveal">
+        <div class="service-row-num" aria-hidden="true">01</div>
+        <div class="service-row-body">
+          <h2>Full Design</h2>
+          <p>Our most comprehensive service — end-to-end design partnership from the first concept through final installation. We manage every detail so you don't have to.</p>
+          <ul class="service-row-includes">
+            <li>Discovery &amp; brief development</li>
+            <li>Concept board &amp; spatial planning</li>
+            <li>Furniture selection &amp; custom sourcing</li>
+            <li>Material &amp; finish specification</li>
+            <li>Contractor coordination</li>
+            <li>Full installation &amp; styled reveal</li>
+          </ul>
+        </div>
+        <div class="service-row-cta">
+          <a href="consultation.html" class="btn-outline">Begin a Project <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-row reveal reveal-delay-1">
+        <div class="service-row-num" aria-hidden="true">02</div>
+        <div class="service-row-body">
+          <h2>Bespoke Consultation</h2>
+          <p>A focused design session — one to three hours — for targeted guidance on materials, furniture, color strategy, spatial flow, or a specific room. Perfect for clients with a strong vision who need expert direction to refine it.</p>
+          <ul class="service-row-includes">
+            <li>Pre-session questionnaire</li>
+            <li>On-site or virtual meeting</li>
+            <li>Material &amp; furniture recommendations</li>
+            <li>Written summary &amp; mood board</li>
+          </ul>
+        </div>
+        <div class="service-row-cta">
+          <a href="consultation.html" class="btn-outline">Book a Session <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-row reveal reveal-delay-2">
+        <div class="service-row-num" aria-hidden="true">03</div>
+        <div class="service-row-body">
+          <h2>Renovation Direction</h2>
+          <p>We partner with your architect and contractor team to ensure the design vision is honored at every stage of construction — from finish selection through to the final walkthrough.</p>
+          <ul class="service-row-includes">
+            <li>Design intent documentation</li>
+            <li>Finish &amp; material schedules</li>
+            <li>Weekly site walkthroughs</li>
+            <li>Contractor briefing &amp; liaison</li>
+            <li>Punch list &amp; final sign-off</li>
+          </ul>
+        </div>
+        <div class="service-row-cta">
+          <a href="consultation.html" class="btn-outline">Enquire <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-3">
+        <div class="service-row-num" aria-hidden="true">04</div>
+        <div class="service-row-body">
+          <h2>Home Staging</h2>
+          <p>We transform vacant and occupied properties into aspirational spaces that photograph beautifully and command higher offers. Our staging draws on the same design vocabulary as our full residential projects — curated furniture, intentional styling, editorial finishing — so every listing tells a compelling story from the first image.</p>
+          <ul class="service-row-includes">
+            <li>Vacant &amp; occupied staging</li>
+            <li>Listing photography prep &amp; art direction</li>
+            <li>Furniture &amp; accessory sourcing</li>
+            <li>Pre-market refresh consultation</li>
+          </ul>
+        </div>
+        <div class="service-row-cta">
+          <a href="consultation.html" class="btn-outline">Inquire About Staging <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-row reveal reveal-delay-4">
+        <div class="service-row-num" aria-hidden="true">05</div>
+        <div class="service-row-body">
+          <h2>Airbnb &amp; STR Design</h2>
+          <p>Short-term rental guests expect a hotel experience in a private home. We design Airbnb and vacation rental properties to maximize bookings, command premium nightly rates, and generate five-star reviews — balancing durability and easy maintenance with a look that stands out in any listing market.</p>
+          <ul class="service-row-includes">
+            <li>Full STR &amp; Airbnb interior design</li>
+            <li>Furniture &amp; decor procurement</li>
+            <li>Listing photography direction</li>
+            <li>Refresh &amp; rebrand of existing rentals</li>
+          </ul>
+        </div>
+        <div class="service-row-cta">
+          <a href="consultation.html" class="btn-outline">Inquire About STR Design <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <div class="service-row service-row--reverse reveal" data-reveal="up">
+        <div class="service-row-img">
+          <img src="assets/images/img-airbnb.png" alt="Airbnb and short-term rental design by Trinity Interior Design" loading="lazy" decoding="async" />
+        </div>
+        <div class="service-row-text">
+          <p class="section-label">Short-Term Rental Design</p>
+          <h2>Airbnb &amp; <em>STR Design</em></h2>
+          <p class="service-desc">Short-term rental guests expect a hotel experience in a private home. We design Airbnb and vacation rental properties to maximize bookings, command premium nightly rates, and generate five-star reviews — balancing durability and easy maintenance with a look that stands out in a saturated market.</p>
+          <ul class="service-detail-list">
+            <li>Full STR &amp; Airbnb design</li>
+            <li>Furniture &amp; decor procurement</li>
+            <li>Listing photography direction</li>
+            <li>Refresh &amp; rebrand of existing rentals</li>
+          </ul>
+          <a href="consultation.html" class="btn-outline">Inquire About STR Design <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Process -->
+<section class="section" style="background:var(--black)">
+  <div class="section-inner">
+    <p class="section-label reveal">Our Process</p>
+    <h2 class="section-heading reveal reveal-delay-1">How a Project <em>Unfolds</em></h2>
+    <div class="process-mini">
+      <div class="process-mini-item reveal"><div class="process-mini-num">01</div><h3 class="process-mini-title">Discovery</h3><p class="process-mini-body">Deep conversation about how you live, move, and want to feel in your space.</p></div>
+      <div class="process-mini-item reveal reveal-delay-1"><div class="process-mini-num">02</div><h3 class="process-mini-title">Concept</h3><p class="process-mini-body">A single, committed direction — mood, materials, spatial plan, palette.</p></div>
+      <div class="process-mini-item reveal reveal-delay-2"><div class="process-mini-num">03</div><h3 class="process-mini-title">Refinement</h3><p class="process-mini-body">Bespoke sourcing, custom commissions, finish schedules, and coordination.</p></div>
+      <div class="process-mini-item reveal reveal-delay-3"><div class="process-mini-num">04</div><h3 class="process-mini-title">Reveal</h3><p class="process-mini-body">Full installation, final styling, and a reveal moment we protect carefully.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:var(--charcoal-mid);text-align:center">
+  <div style="max-width:600px;margin:0 auto">
+    <p class="section-label reveal" style="justify-content:center">Start Here</p>
+    <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom:var(--space-6)">Ready to <em>Begin?</em></h2>
+    <p class="section-body reveal reveal-delay-2" style="margin:0 auto var(--space-10);max-width:44ch">All projects begin with a no-obligation consultation call. We'd love to hear about your space.</p>
+    <a href="consultation.html" class="btn-primary reveal reveal-delay-3">Book a Consultation <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 6h14M9 1l5 5-5 5"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><a href="index.html" class="logo" style="margin-bottom:var(--space-4)"><svg width="38" height="30" viewBox="0 0 56 44" fill="none" aria-hidden="true"><g stroke="#b08a5e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2L2 18v24M14 2l12 16v24"/><path d="M36 11L22 26v16M36 11l14 15v16"/></g></svg><div class="logo-text"><span class="logo-name">trinity</span><span class="logo-tagline">Interior Design</span></div></a><p class="footer-tagline">California's premier interior design studio. Editorial, intentional, enduring.</p></div>
+    <div><p class="footer-col-title">Navigate</p><ul class="footer-links" role="list"><li><a href="studio.html">Studio</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="shop.html">Shop</a></li></ul></div>
+    <div><p class="footer-col-title">Services</p><ul class="footer-links" role="list"><li><a href="services.html">Full Design</a></li><li><a href="services.html">Consultation</a></li><li><a href="services.html">Renovation</a></li><li><a href="consultation.html">Book a Session</a></li></ul></div>
+    <div><p class="footer-col-title">Connect</p><ul class="footer-links" role="list"><li><a href="consultation.html">Contact Us</a></li><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li><li><a href="#">Houzz</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">© 2026 Trinity Interior Design. All rights reserved.</p><div class="footer-socials"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Houzz</a></div></div>
+</footer>
+<script src="assets/js/transitions.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+</body>
+</html>
